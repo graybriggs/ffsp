@@ -11,7 +11,6 @@
 #include "context.h"
 #include "globals.h"
 #include "input.h"
-#include "object.h"
 #include "render.h"
 #include "timer.h"
 
