@@ -18,7 +18,6 @@ set(
     camera.cpp
     context.cpp
     input.cpp
-    object.cpp
     main.cpp
     render.cpp
     timer.cpp
