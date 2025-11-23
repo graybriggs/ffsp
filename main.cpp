@@ -22,21 +22,18 @@ int main(int argc, char* args[]) {
     Context context;
     context_setup_window(context);
     context_setup_gl(context);
-
-
-    bool done = false;
-    //SDL_Event event;
-
+    
     input_init();
     draw_init(SCREEN_WIDTH, SCREEN_HEIGHT);
-
-
+    
     camera cam;
-    camera_setup(cam, glm::vec3(0, 3.0, 3.0));
-
-
+    glm::vec3 starting_position = glm::vec3(0.0, 3.0, 3.0);
+    camera_setup(cam, starting_position);
+    
     Timer timer;
     timer_reset(timer);
+    
+    bool done = false;
 
     while (!done) {
 
