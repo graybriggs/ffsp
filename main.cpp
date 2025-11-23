@@ -30,10 +30,6 @@ int main(int argc, char* args[]) {
     input_init();
     draw_init(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    float color_red[] = {1.0f, 0.0f, 0.0f };
-    float color_green[] = { 0.0f, 1.0f, 0.0f };
-    float color_blue[] ={ 0.0f, 0.0f, 1.0f };
-
 
     camera cam;
     camera_setup(cam, glm::vec3(0, 3.0, 3.0));
