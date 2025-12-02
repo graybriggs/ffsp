@@ -55,7 +55,7 @@ void timer_increment_framecount(Timer& timer) {
 }
 
 
-void timer_debug_info(Timer& timer) {
+void timer_debug_info(const Timer& timer) {
     std::cout << "Running Time: " << timer_get_app_runing_time(timer) << " seconds " << std::endl;
     std::cout << "Average FPS: " << timer_compute_average_fps(timer) << std::endl;
 }

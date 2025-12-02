@@ -25,4 +25,4 @@ void timer_frame_wait(const Timer& timer);
 float timer_compute_average_fps(const Timer& timer);
 void timer_increment_framecount(Timer& timer);
 
-void timer_debug_info(Timer& timer);
+void timer_debug_info(const Timer& timer);
