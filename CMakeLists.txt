@@ -20,6 +20,7 @@ set(
     input.cpp
     main.cpp
     render.cpp
+    ticker.cpp
     timer.cpp
 )
 
