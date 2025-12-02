@@ -9,11 +9,6 @@ void timer_reset(Timer& timer) {
     timer.diff = 0;
     timer.frame_count = 0;
     timer.fps_cap = FPS_CAP;
-
-    timer.ticker_value = 0;
-    timer.ticker_timer = 0;
-    timer.one_tick_value = 0;
-    timer.one_tick_timer = 0;
 }
 
 void timer_update(Timer& timer) {
