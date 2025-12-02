@@ -9,6 +9,11 @@ void timer_reset(Timer& timer) {
     timer.diff = 0;
     timer.frame_count = 0;
     timer.fps_cap = FPS_CAP;
+
+    timer.ticker_value = 0;
+    timer.ticker_timer = 0;
+    timer.one_tick_value = 0;
+    timer.one_tick_timer = 0;
 }
 
 void timer_update(Timer& timer) {
@@ -35,18 +40,17 @@ float timer_get_app_runing_time(const Timer& timer) {
 }
 
 void timer_frame_wait(const Timer& timer) {
-    
-    if (timer.now < timer_frame_count(timer)) {
-        SDL_Delay(timer_compute_wait_time(timer));
-    }
+    auto wait_time = timer_compute_wait_time(timer);
+
+    SDL_Delay((wait_time + timer.now) - timer.now);
 }
+
+/////
 
 float timer_compute_average_fps(const Timer& timer) {
     
-    auto average_fps = timer.frame_count / (SDL_GetTicks64() / ONE_SECOND);
-    if (average_fps > 2000000.0f) {
-        average_fps = 0;
-    }
+    auto average_fps = ONE_SECOND / (timer.diff / ONE_SECOND);
+
     return average_fps;
 }
 

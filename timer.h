@@ -11,6 +11,17 @@ struct Timer {
     float diff;
     float frame_count;
     float fps_cap;
+
+    // tickers
+    // continuous ticker
+    bool ticker_start_stop; // true - running, false - stopped
+    float ticker_value;
+    float ticker_timer;
+
+    // one tick
+    float one_tick_start_stop;
+    float one_tick_value;
+    float one_tick_timer;
 };
 
 void timer_reset(Timer& timer);
@@ -22,6 +33,8 @@ float timer_compute_wait_time(const Timer& timer);
 float timer_get_app_runing_time(const Timer& timer);
 
 void timer_frame_wait(const Timer& timer);
+
+
 float timer_compute_average_fps(const Timer& timer);
 void timer_increment_framecount(Timer& timer);
 
