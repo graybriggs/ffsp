@@ -35,6 +35,7 @@ bool ticker_one_tick(Ticker& ticker) {
 
     if (ticker.one_tick_start_stop) {
         if (ticker.one_tick_timer < SDL_GetTicks64()) {
+            ticker.one_tick_start_stop = false;
             result = true;
         }
         else {
@@ -43,7 +44,6 @@ bool ticker_one_tick(Ticker& ticker) {
     }
     return result;
 }
-
 
 
 // timer_ticker - continuously runs, returning true when set time is met
