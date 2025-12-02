@@ -11,17 +11,6 @@ struct Timer {
     float diff;
     float frame_count;
     float fps_cap;
-
-    // tickers
-    // continuous ticker
-    bool ticker_start_stop; // true - running, false - stopped
-    float ticker_value;
-    float ticker_timer;
-
-    // one tick
-    float one_tick_start_stop;
-    float one_tick_value;
-    float one_tick_timer;
 };
 
 void timer_reset(Timer& timer);
