@@ -17,6 +17,7 @@ set(
     SOURCES
     camera.cpp
     context.cpp
+    cube.cpp
     input.cpp
     main.cpp
     render.cpp
