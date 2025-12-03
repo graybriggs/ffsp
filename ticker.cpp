@@ -30,11 +30,11 @@ void ticker_set_one_tick(Ticker& ticker, const float time) {
     ticker.one_tick_value = SDL_GetTicks64() + time;
 }
 
-bool ticker_one_tick(Ticker& ticker) {
+bool ticker_one_tick_done(Ticker& ticker) {
 
     if (ticker.one_tick_start_stop) {
         if (ticker.one_tick_timer < SDL_GetTicks64()) {
-            ticker.one_tick_start_stop = false;
+            ticker_stop_one_tick(ticker);
             return true;
         }
     }
