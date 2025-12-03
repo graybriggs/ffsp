@@ -31,18 +31,14 @@ void ticker_set_one_tick(Ticker& ticker, const float time) {
 }
 
 bool ticker_one_tick(Ticker& ticker) {
-    bool result;
 
     if (ticker.one_tick_start_stop) {
         if (ticker.one_tick_timer < SDL_GetTicks64()) {
             ticker.one_tick_start_stop = false;
-            result = true;
-        }
-        else {
-            result = false;
+            return true;
         }
     }
-    return result;
+    return false;
 }
 
 
@@ -62,16 +58,12 @@ void ticker_set(Ticker& ticker, const float time) {
 }
 
 bool ticker_update(Ticker& ticker) {
-    bool result;
 
     if (ticker.ticker_start_stop) {
         if (SDL_GetTicks64() > ticker.ticker_timer) {
             ticker_set(ticker, ticker.ticker_value);
-            result = true;
-        }
-        else {
-            result = false;
+            return true;
         }
     }
-    return result;
+    return false;
 }
