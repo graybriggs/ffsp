@@ -12,16 +12,12 @@ struct camera {
     glm::vec3 up;
     double cam_yaw;
     double cam_pitch;
-    float speed = 0.1f;
-    float rot_speed = 0.5f;
+    float speed = 0.4f;
+    float rot_speed = 0.8f;
 };
 
-constexpr double PI = 3.14159265;
 constexpr glm::vec3 WORLD_UP = glm::vec3(0.0, 1.0, 0.0);
 
-constexpr float DEG2RAD(float ang) {
-    return ang * (PI / 180.0);
-}
 
 void camera_setup(camera& cam, glm::vec3 pos, double yaw = 0.0, double pitch = 0.0);
 void compute_basis(camera& cam);

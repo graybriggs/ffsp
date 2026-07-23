@@ -1,5 +1,6 @@
 
 #include "camera.h"
+#include "math_constants.h"
 #include "input.h"
 
 #include <iostream>
