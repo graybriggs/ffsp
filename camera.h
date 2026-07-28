@@ -2,7 +2,7 @@
 
 #include <GL/gl.h>
 #include <glm/glm.hpp>
-
+#include "input.h"
 
 struct camera {
     glm::vec3 eye;
@@ -12,8 +12,8 @@ struct camera {
     glm::vec3 up;
     double cam_yaw;
     double cam_pitch;
-    float speed = 0.4f;
-    float rot_speed = 0.8f;
+    float speed = 0.2f;
+    float rot_speed = 0.4f;
 };
 
 constexpr glm::vec3 WORLD_UP = glm::vec3(0.0, 1.0, 0.0);
@@ -33,4 +33,4 @@ void camera_yaw_pitch_bounds_check(camera& camera);
 
 void camera_debug_info(camera& camera);
 
-void camera_update(camera& camera);
+void camera_update(camera& camera, input_data& input);

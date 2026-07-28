@@ -102,35 +102,35 @@ void camera_debug_info(camera& camera) {
     std::cout << "yaw: " << camera.cam_yaw << " pitch: " << camera.cam_pitch <<  std::endl;
 }
 
-void camera_update(camera& camera) {
+void camera_update(camera& camera, input_data& input) {
     glm::vec3 forward = compute_forward(camera);
     glm::vec3 right = compute_right(camera);
 
-    if (input_state_button(button::INPUT_KEY_W)) {
+    if (input_query_button_state(input, INPUT_KEY_W)) {
         camera.eye += forward * camera.speed;
     }
-    if (input_state_button(button::INPUT_KEY_S)) {
+    if (input_query_button_state(input, INPUT_KEY_S)) {
         camera.eye -= forward * camera.speed;
     }
-    if (input_state_button(button::INPUT_KEY_A)) {
+    if (input_query_button_state(input, INPUT_KEY_A)) {
         camera.eye += right * camera.speed;
     }
-    if (input_state_button(button::INPUT_KEY_D)) {
+    if (input_query_button_state(input, INPUT_KEY_D)) {
         camera.eye -= right * camera.speed;
     }
-    if (input_state_button(button::INPUT_KEY_RIGHT)) {
+    if (input_query_button_state(input, INPUT_KEY_RIGHT)) {
         camera.cam_yaw -= camera.rot_speed;
         camera.center = camera.eye + compute_forward(camera);
     }
-    if (input_state_button(button::INPUT_KEY_LEFT)) {
+    if (input_query_button_state(input, INPUT_KEY_LEFT)) {
         camera.cam_yaw += camera.rot_speed;
         camera.center = camera.eye + compute_forward(camera);
     }
-    if (input_state_button(button::INPUT_KEY_UP)) {
+    if (input_query_button_state(input, INPUT_KEY_UP)) {
         camera.cam_pitch -= camera.rot_speed;
         camera.center = camera.eye + compute_forward(camera);
     }
-    if (input_state_button(button::INPUT_KEY_DOWN)) {
+    if (input_query_button_state(input, INPUT_KEY_DOWN)) {
         camera.cam_pitch += camera.rot_speed;
         camera.center = camera.eye + compute_forward(camera);
     }
