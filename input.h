@@ -38,18 +38,6 @@ struct input_data {
 
 void input_init(input_data& input);
 
-// void input_set_left_mouse_click(input_mouse& mouse);
-// void input_set_left_mouse_release(input_mouse& mouse);
-// void input_set_right_mouse_click(input_mouse& mouse);
-// void input_set_left_mouse_release(input_mouse& mouse);
-
-// void input_set_button_state(button button, float state);
-// void input_set_button_pressed(button button);
-// void input_set_button_released(button button);
-// bool input_state_button(button button);
-// void input_clear_all_inputs();
-// const char* input_button_name(button button);
-
 void input_set_left_mouse_click(input_data& input);
 void input_set_left_mouse_release(input_data& input);
 void input_set_right_mouse_click(input_data& input);
@@ -62,7 +50,5 @@ void input_set_button_release(input_data& input, input_key_list key);
 bool input_query_button_state(input_data& input, input_key_list key);
 void input_clear_all_inputs(input_data& input);
 const char* input_button_name(input_data& key);
-
-
 
 bool input_pump_events(input_data& input);
