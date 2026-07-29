@@ -50,14 +50,19 @@ glm::vec3 compute_up(camera& cam) {
 }
 
 void make_perspective(GLfloat fovy, GLfloat aspect, GLfloat z_near, GLfloat z_far) {
-    float far = 1.0 / (glm::tan(DEG2RAD(fovy) / 2.0) * aspect);
-    float f = 1.0 / glm::tan(DEG2RAD(fovy) / 2.0);
+    float half_fov = 1.0 / glm::tan(DEG2RAD(fovy) / 2.0);
+    //float far = 1.0 / (glm::tan(DEG2RAD(fovy) / 2.0) * aspect);
+    float far = half_fov * aspect; // horizontal lens scale
+
+    //float z_depth = (-z_far - z_near) / (z_near - z_far);
+    float z_depth = (z_far - z_near) / (z_far - z_near);
+    float depth_offset = -(2.0f * z_far * z_near) / (z_near - z_far);
 
     float m[16] = {
-        far, 0, 0, 0,
-        0, f, 0, 0,
-        0, 0, (-z_far - z_near) / (z_near - z_far), -(2 * z_far * z_near) / (z_near - z_far),
-        0, 0, -1, 0
+        far, 0,        0,       0,
+        0,   half_fov, 0,       0,
+        0,   0,        z_depth, depth_offset,
+        0,   0,        -1,      0
     };
 
     glMatrixMode(GL_PROJECTION);
