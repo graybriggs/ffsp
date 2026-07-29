@@ -28,6 +28,7 @@ int main(int argc, char* args[]) {
 
     input_data input;
     input_init(input);
+    
     draw_init(SCREEN_WIDTH, SCREEN_HEIGHT);
     
     camera cam;
@@ -66,11 +67,11 @@ int main(int argc, char* args[]) {
     cube_setup(c);
 
 
-    while (!done) {
+    while (!input_quit(input)) {
 
         timer_update(timer);
 
-        done = input_pump_events(input);
+        input_pump_events(input);
 
         render_prepare_scene();
 

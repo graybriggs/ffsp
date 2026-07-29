@@ -6,17 +6,6 @@
 
 #include "input.h"
 
-//static const char* button_names[] = {
-//
-//	[0] = "UP",
-//	[INPUT_KEY_DOWN] = "DOWN",
-//	[INPUT_KEY_LEFT] = "LEFT",
-//	[INPUT_KEY_RIGHT] = "RIGHT",
-//	[INPUT_KEY_G] = "G",
-//	[INPUT_KEY_X] = "X",
-//	[INPUT_KEY_Z] = "Y"
-//};
-
 
 //static bool key_bindings[button::INPUT_BUTTON_MAX];
 
@@ -85,10 +74,12 @@ void input_clear_all_inputs(input_data& input) {
 	memset(&input.key_bindings[0], 0, sizeof(input.key_bindings));
 }
 
-const char* input_button_name(input_data& button) {
-	//return button_names[button];
+const char* input_button_name(input_key_list key) {
+
+	//return key_names[key];
 	return nullptr;
-}
+};
+
 
 
 bool input_pump_events(input_data& input) {
@@ -96,7 +87,7 @@ bool input_pump_events(input_data& input) {
 
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
-			//app_done = true;
+			input.quit = true;
 			return true;
 		}
 
@@ -124,29 +115,83 @@ bool input_pump_events(input_data& input) {
 			case SDLK_DOWN:
 				input_set_button_pressed(input, INPUT_KEY_DOWN);
 				break;
-			case SDLK_g:
+			case SDLK_a:
+				input_set_button_pressed(input, INPUT_KEY_A);
+				break;
+			case SDLK_b:
+				input_set_button_pressed(input, INPUT_KEY_B);
+				break;
+			case SDLK_c:
+				input_set_button_pressed(input, INPUT_KEY_C);
+				break;
+			case SDLK_d:
+				input_set_button_pressed(input, INPUT_KEY_D);
+				break;
+            case SDLK_e:
+				input_set_button_pressed(input, INPUT_KEY_E);
+				break;
+            case SDLK_f:
+				input_set_button_pressed(input, INPUT_KEY_F);
+				break;
+            case SDLK_g:
 				input_set_button_pressed(input, INPUT_KEY_G);
 				break;
-			case SDLK_h:
+            case SDLK_h:
 				input_set_button_pressed(input, INPUT_KEY_H);
 				break;
-			case SDLK_x:
-				input_set_button_pressed(input, INPUT_KEY_X);
+			case SDLK_i:
+				input_set_button_pressed(input, INPUT_KEY_I);
 				break;
-			case SDLK_z:
-				input_set_button_pressed(input, INPUT_KEY_Z);
+			case SDLK_j:
+				input_set_button_pressed(input, INPUT_KEY_J);
+				break;
+			case SDLK_k:
+				input_set_button_pressed(input, INPUT_KEY_K);
+				break;
+			case SDLK_l:
+				input_set_button_pressed(input, INPUT_KEY_L);
+				break;
+            case SDLK_m:
+				input_set_button_pressed(input, INPUT_KEY_M);
+				break;
+            case SDLK_n:
+				input_set_button_pressed(input, INPUT_KEY_N);
+				break;
+            case SDLK_o:
+				input_set_button_pressed(input, INPUT_KEY_O);
+				break;
+            case SDLK_p:
+				input_set_button_pressed(input, INPUT_KEY_P);
+				break;
+			case SDLK_q:
+				input_set_button_pressed(input, INPUT_KEY_Q);
+				break;
+			case SDLK_r:
+				input_set_button_pressed(input, INPUT_KEY_R);
+				break;
+			case SDLK_s:
+				input_set_button_pressed(input, INPUT_KEY_S);
+				break;
+			case SDLK_t:
+				input_set_button_pressed(input, INPUT_KEY_T);
+				break;
+            case SDLK_u:
+				input_set_button_pressed(input, INPUT_KEY_U);
+				break;
+            case SDLK_v:
+				input_set_button_pressed(input, INPUT_KEY_V);
 				break;
             case SDLK_w:
 				input_set_button_pressed(input, INPUT_KEY_W);
 				break;
-            case SDLK_a:
-				input_set_button_pressed(input, INPUT_KEY_A);
+            case SDLK_x:
+				input_set_button_pressed(input, INPUT_KEY_X);
 				break;
-            case SDLK_s:
-				input_set_button_pressed(input, INPUT_KEY_S);
+			case SDLK_y:
+				input_set_button_pressed(input, INPUT_KEY_Y);
 				break;
-            case SDLK_d:
-				input_set_button_pressed(input, INPUT_KEY_D);
+			case SDLK_z:
+				input_set_button_pressed(input, INPUT_KEY_Z);
 				break;
 
 			}
@@ -173,31 +218,84 @@ bool input_pump_events(input_data& input) {
 			case SDLK_DOWN:
 				input_set_button_release(input, INPUT_KEY_DOWN);
 				break;
-			case SDLK_g:
+			case SDLK_a:
+				input_set_button_release(input, INPUT_KEY_A);
+				break;
+			case SDLK_b:
+				input_set_button_release(input, INPUT_KEY_B);
+				break;
+			case SDLK_c:
+				input_set_button_release(input, INPUT_KEY_C);
+				break;
+			case SDLK_d:
+				input_set_button_release(input, INPUT_KEY_D);
+				break;
+            case SDLK_e:
+				input_set_button_release(input, INPUT_KEY_E);
+				break;
+            case SDLK_f:
+				input_set_button_release(input, INPUT_KEY_F);
+				break;
+            case SDLK_g:
 				input_set_button_release(input, INPUT_KEY_G);
 				break;
-			case SDLK_h:
+            case SDLK_h:
 				input_set_button_release(input, INPUT_KEY_H);
 				break;
-			case SDLK_x:
-				input_set_button_release(input, INPUT_KEY_X);
+			case SDLK_i:
+				input_set_button_release(input, INPUT_KEY_I);
 				break;
-			case SDLK_z:
-				input_set_button_release(input, INPUT_KEY_Z);
+			case SDLK_j:
+				input_set_button_release(input, INPUT_KEY_J);
+				break;
+			case SDLK_k:
+				input_set_button_release(input, INPUT_KEY_K);
+				break;
+			case SDLK_l:
+				input_set_button_release(input, INPUT_KEY_L);
+				break;
+            case SDLK_m:
+				input_set_button_release(input, INPUT_KEY_M);
+				break;
+            case SDLK_n:
+				input_set_button_release(input, INPUT_KEY_N);
+				break;
+            case SDLK_o:
+				input_set_button_release(input, INPUT_KEY_O);
+				break;
+            case SDLK_p:
+				input_set_button_release(input, INPUT_KEY_P);
+				break;
+			case SDLK_q:
+				input_set_button_release(input, INPUT_KEY_Q);
+				break;
+			case SDLK_r:
+				input_set_button_release(input, INPUT_KEY_R);
+				break;
+			case SDLK_s:
+				input_set_button_release(input, INPUT_KEY_S);
+				break;
+			case SDLK_t:
+				input_set_button_release(input, INPUT_KEY_T);
+				break;
+            case SDLK_u:
+				input_set_button_release(input, INPUT_KEY_U);
+				break;
+            case SDLK_v:
+				input_set_button_release(input, INPUT_KEY_V);
 				break;
             case SDLK_w:
 				input_set_button_release(input, INPUT_KEY_W);
 				break;
-            case SDLK_a:
-				input_set_button_release(input, INPUT_KEY_A);
+            case SDLK_x:
+				input_set_button_release(input, INPUT_KEY_X);
 				break;
-            case SDLK_s:
-				input_set_button_release(input, INPUT_KEY_S);
+			case SDLK_y:
+				input_set_button_release(input, INPUT_KEY_Y);
 				break;
-            case SDLK_d:
-				input_set_button_release(input, INPUT_KEY_D);
+			case SDLK_z:
+				input_set_button_release(input, INPUT_KEY_Z);
 				break;
-
 			}
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -224,4 +322,8 @@ bool input_pump_events(input_data& input) {
 		}
 	}
     return false;
+}
+
+bool input_quit(input_data& input) {
+	return input.quit;
 }
