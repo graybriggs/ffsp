@@ -44,6 +44,7 @@ enum input_key_list {
 	INPUT_KEY_9,
 	INPUT_KEY_0,
 	INPUT_KEY_SPACE,
+	INPUT_KEY_ESCAPE,
 	/// COUNT
 	INPUT_KEY_COUNT
 };

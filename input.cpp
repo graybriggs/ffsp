@@ -98,11 +98,6 @@ bool input_pump_events(input_data& input) {
 			int internal_code = code;
 			//printf("%X | %d\n", code, internal_code);
 			switch (code) {
-			case SDLK_ESCAPE:
-				return true;
-			case SDLK_SPACE:
-				input_set_button_pressed(input, INPUT_KEY_SPACE);
-				break;
 			case SDLK_LEFT:
 				input_set_button_pressed(input, INPUT_KEY_LEFT);
 				break;
@@ -193,7 +188,12 @@ bool input_pump_events(input_data& input) {
 			case SDLK_z:
 				input_set_button_pressed(input, INPUT_KEY_Z);
 				break;
-
+			case SDLK_SPACE:
+				input_set_button_pressed(input, INPUT_KEY_SPACE);
+				break;
+			case SDLK_ESCAPE:
+				input_set_button_pressed(input, INPUT_KEY_ESCAPE);
+				break;
 			}
 		}
 		else if (event.type == SDL_KEYUP) {
@@ -203,9 +203,6 @@ bool input_pump_events(input_data& input) {
 			//printf("%X | %d\n", code, internal_code);
 			//input_set_button_released(internal_code);
 			switch (code) {
-			case SDLK_SPACE:
-				input_set_button_release(input, INPUT_KEY_SPACE);
-				break;
 			case SDLK_LEFT:
 				input_set_button_release(input, INPUT_KEY_LEFT);
 				break;
@@ -296,6 +293,12 @@ bool input_pump_events(input_data& input) {
 			case SDLK_z:
 				input_set_button_release(input, INPUT_KEY_Z);
 				break;
+			case SDLK_SPACE:
+				input_set_button_release(input, INPUT_KEY_SPACE);
+				break;
+			case SDLK_ESCAPE:
+				input_set_button_release(input, INPUT_KEY_ESCAPE);
+				break;
 			}
 		}
 		else if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -325,5 +328,8 @@ bool input_pump_events(input_data& input) {
 }
 
 bool input_quit(input_data& input) {
+	if (input_query_button_state(input, INPUT_KEY_ESCAPE)) {
+		return true;
+	}
 	return input.quit;
 }
