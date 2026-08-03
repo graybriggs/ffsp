@@ -15,6 +15,7 @@
 #include "globals.h"
 #include "input.h"
 #include "render.h"
+#include "scene.h"
 #include "ticker.h"
 #include "timer.h"
 
@@ -26,9 +27,9 @@ int main(int argc, char* args[]) {
     context_setup_window(context);
     context_setup_gl(context);
 
-    input_data input;
+    input_state input;
     input_init(input);
-    
+
     draw_init(SCREEN_WIDTH, SCREEN_HEIGHT);
     
     camera cam;
@@ -45,11 +46,11 @@ int main(int argc, char* args[]) {
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    // glColorMaterial(GL_FRONT_AND_BACK, GL_EMISSION);
-    // glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_EMISSION);
+    glEnable(GL_COLOR_MATERIAL);
 
-    //glEnable(GL_LIGHTING);
-    //glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
 
     bool done = false;
 
@@ -66,6 +67,25 @@ int main(int argc, char* args[]) {
     Cube c;
     cube_setup(c);
 
+    entity e0;
+    entity_setup(e0, entity_geometry::CUBE);
+    e0.model = glm::translate(e0.model, glm::vec3(0.0, 0.0, 0.0));
+    //e0.position = glm::vec3(0.0, 0.0, 0.0);
+    entity e1;
+    entity_setup(e1, entity_geometry::PYRAMID);
+    //e1.position = glm::vec3(-5.0, 0.0, -5.0);
+    e0.model = glm::translate(e0.model, glm::vec3(-5.0, 0.0, -5.0));
+    entity e2;
+    entity_setup(e2, entity_geometry::PLANE);
+    //e1.position = glm::vec3(-5.0, 0.0, -5.0);
+    e0.model = glm::translate(e2.model, glm::vec3(-10.0, 10.0, 10.0));
+
+
+    scene test_scene;
+    //glm::vec3 position(0.0, 0.0, 0.0);
+    add_entity(test_scene, &e0);
+    add_entity(test_scene, &e1);
+    add_entity(test_scene, &e2);
 
     while (!input_quit(input)) {
 
@@ -73,16 +93,25 @@ int main(int argc, char* args[]) {
 
         input_pump_events(input);
 
-        render_prepare_scene();
-
+        render_prepare_scene(cam);
+        
         //camera_debug_info(cam);
         camera_update(cam, input);
         camera_yaw_pitch_bounds_check(cam);
-
+        
         auto delta = timer_get_delta_time(timer);
-        cube_update(c, delta);
+        //cube_update(c, delta);
+        if (input_query_key_state(input, INPUT_KEY_Y)) {
+            e0.position.z += 1.0;
+        }
+        if (input_query_key_state(input, INPUT_KEY_H)) {
+            e0.position.z -= 1.0;
+        }
+        
+        //draw_cube(position);
+        
 
-        draw_scene();
+        draw_entities(cam, test_scene);
         //draw_game_cube(c);
 
         context_window_swap(context);
