@@ -85,36 +85,38 @@ enum input_key_list {
 // };
 
 struct mouse_coords {
-	int mouse_x;
-	int mouse_y;
+	int x;
+	int y;
 };
 
-struct input_data {
+struct input_state {
 	input_key_list key;
 	std::array<int, INPUT_KEY_COUNT> key_bindings;
 	
 	bool mouse_left;
 	bool mouse_right;
-	mouse_coords coords;
+	mouse_coords click_coords;
+	mouse_coords motion_coords;
 
 	bool quit;
 };
 
-void input_init(input_data& input);
+void input_init(input_state& input);
 
-void input_set_left_mouse_click(input_data& input);
-void input_set_left_mouse_release(input_data& input);
-void input_set_right_mouse_click(input_data& input);
-void input_set_left_mouse_release(input_data& input);
-mouse_coords input_get_mouse_coords(input_data& input);
+void input_set_left_mouse_click(input_state& input);
+void input_set_left_mouse_release(input_state& input);
+void input_set_right_mouse_click(input_state& input);
+void input_set_left_mouse_release(input_state& input);
+mouse_coords input_get_mouse_motion_coords(input_state& input);
+mouse_coords input_get_mouse_click_coords(input_state& input);
 
-void input_set_button_state(input_data& input, float state);
-void input_set_button_pressed(input_data& input, input_key_list key);
-void input_set_button_release(input_data& input, input_key_list key);
-bool input_query_button_state(input_data& input, input_key_list key);
-void input_clear_all_inputs(input_data& input);
-const char* input_button_name(input_key_list key);
+void input_set_key_state(input_state& input, float state);
+void input_set_key_pressed(input_state& input, input_key_list key);
+void input_set_key_release(input_state& input, input_key_list key);
+bool input_query_key_state(input_state& input, input_key_list key);
+void input_clear_all_inputs(input_state& input);
+const char* input_key_name(input_key_list key);
 
-bool input_pump_events(input_data& input);
+bool input_pump_events(input_state& input);
 
-bool input_quit(input_data& input);
+bool input_quit(input_state& input);
