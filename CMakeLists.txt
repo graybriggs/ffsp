@@ -18,9 +18,12 @@ set(
     camera.cpp
     context.cpp
     cube.cpp
+    entity.cpp
+    geometry.cpp
     input.cpp
     main.cpp
     render.cpp
+    scene.cpp
     ticker.cpp
     timer.cpp
 )
