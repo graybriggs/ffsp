@@ -83,7 +83,7 @@ const char* input_button_name(input_key_list key) {
 
 	//return key_names[key];
 	return nullptr;
-};
+}
 
 
 
@@ -341,8 +341,11 @@ bool input_pump_events(input_state& input) {
 }
 
 bool input_quit(input_state& input) {
+	
+	bool quit = false;
+	
 	if (input_query_key_state(input, INPUT_KEY_ESCAPE)) {
-		return true;
+		quit = true;
 	}
-	return input.quit;
+	return quit;
 }
