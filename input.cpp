@@ -93,7 +93,6 @@ bool input_pump_events(input_state& input) {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_QUIT) {
 			input.quit = true;
-			return true;
 		}
 
 		if (event.type == SDL_KEYDOWN) {
@@ -345,6 +344,9 @@ bool input_quit(input_state& input) {
 	bool quit = false;
 	
 	if (input_query_key_state(input, INPUT_KEY_ESCAPE)) {
+		quit = true;
+	}
+	if (input.quit == true) {
 		quit = true;
 	}
 	return quit;
